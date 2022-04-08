@@ -6,7 +6,9 @@
 
     if($name && $email){
 
-        $sql = $pdo->prepare();
+        $sql->prepare("SELECT * FROM usuarios WHERE email = :email");
+        $sql->bindValue(':email', $email);
+        $sql->execute();
         
         $sql = $pdo->prepare("INSERT INTO usuarios (nome, email) VALUES (:name, :email)");
         $sql->bindValue(':name', $name);
